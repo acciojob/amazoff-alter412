@@ -127,7 +127,7 @@ public class OrderRepository {
     }
 
     public String getLastDeliveryTimeByPartnerId(String partnerId) {
-        String ans="";
+        String ans="00:00";
         int max=0;
         if(partnerOrders.containsKey(partnerId)){
             for(String x:partnerOrders.get(partnerId)){
@@ -135,9 +135,19 @@ public class OrderRepository {
                     max=orders.get(x).getDeliveryTime();
                 }
             }
-            ans=ans+(max/60)+":"+(max%60);
+            if(max%60==0&&(max/60)==24){
+                return ans;
+            }
+            if(max/60<10){
+                ans=ans+"0";
+            }
+            ans=ans+(max/60)+":";
+            if(max%60<10){
+                ans=ans+"0";
+            }
+            ans=ans+(max%60);
         }
-        return Integer.toString(max);
+        return ans;
     }
 
     public void deletePartnerById(String partnerId) {
