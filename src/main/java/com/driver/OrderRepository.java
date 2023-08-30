@@ -133,19 +133,21 @@ public class OrderRepository {
             for(String x:partnerOrders.get(partnerId)){
                 if(orders.get(x).getDeliveryTime()>max){
                     max=orders.get(x).getDeliveryTime();
+                    ans = orders.get(x).getS();
                 }
             }
-            if(max%60==0&&(max/60)==24){
-                return ans;
-            }
-            if(max/60<10){
-                ans=ans+"0";
-            }
-            ans=ans+(max/60)+":";
-            if(max%60<10){
-                ans=ans+"0";
-            }
-            ans=ans+(max%60);
+            return ans;
+//            if(max%60==0&&(max/60)==24){
+//                return ans;
+//            }
+//            if(max/60<10){
+//                ans=ans+"0";
+//            }
+//            ans=ans+(max/60)+":";
+//            if(max%60<10){
+//                ans=ans+"0";
+//            }
+//            ans=ans+(max%60);
         }
         return ans;
     }
