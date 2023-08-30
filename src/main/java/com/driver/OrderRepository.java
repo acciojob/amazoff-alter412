@@ -17,9 +17,12 @@ public class OrderRepository {
     HashMap<String,List<String>> partnerOrders = new HashMap<>();
 
     public void addOrder(Order order) {
-        if(!orders.containsKey(order.getId())){
-            orders.put(order.getId(),order);
+        if(orders!=null){
+            if(!orders.containsKey(order.getId())){
+                orders.put(order.getId(),order);
+            }
         }
+
 
     }
 
@@ -45,6 +48,8 @@ public class OrderRepository {
                 List<String> temp = new ArrayList<>();
                 temp.add(orderId);
                 partnerOrders.put(partnerId,temp);
+                DeliveryPartner dp =partners.get(partnerId);
+                dp.setNumberOfOrders(dp.getNumberOfOrders()+1);
             }
         }
     }
