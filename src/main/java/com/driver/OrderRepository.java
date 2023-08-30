@@ -137,7 +137,7 @@ public class OrderRepository {
             }
             ans=ans+(max/60)+":"+(max%60);
         }
-        return ans;
+        return Integer.toString(max);
     }
 
     public void deletePartnerById(String partnerId) {
